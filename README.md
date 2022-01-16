@@ -66,7 +66,7 @@ Hi-k metal gate transistors (45nm High-k+Metal Gate Strain-Ehanced Transistors) 
       ./mcpat -infile ProcessorDescriptionFiles/Xeon.xml -print_level 2
       ./mcpat -infile ProcessorDescriptionFiles/ARM_A9_2GHz.xml -print_level 2
 
-the results can be found here [Xeon](path) and [ARM A9](path2). As shown in the table below the differences between Xeon VS ARM A9
+the results can be found here [Xeon](https://github.com/NikolaosGian/computer_architecture_3/blob/main/question_1_4/print_level_2/Xeon.txt) and [ARM A9](https://github.com/NikolaosGian/computer_architecture_3/blob/main/question_1_4/print_level_2/ARM_A9_2GHZ.txt). As shown in the table below the differences between Xeon VS ARM A9
 
 | Processor | Area | Peak Power | Total Leakage | Peak Dynamic | Subthreshold Leakage | Gate Leakage | Runtime Dynamic | Subthreshold Leakage with power gating |
 | :--------: | :--------------------: | :-------------------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
