@@ -49,7 +49,7 @@ set, version 2.0). Wattch has enabled the computer architecture research communi
 ### Short-Circuit Power
 &nbsp;&nbsp;&nbsp;&nbsp;Switching circuits also dissipate short-circuit power due to a momentary short through the pull-up and pull-down devices. We compute the shortcircuit power using the equations derived in the work by Nose(Analysis and Future Trend of Short-circuit Power) that predicts trends for short-circuit power. If the ratio of the threshold voltage to the supply voltage shrinks, short-circuit power becomes more significant. Short-circuit power is around 10% of the total dynamic power, with fluctuations within 3.1% across all the technology generations. The main reason for the stable short-circuit power is that we use ITRS technology models that have stable Vth to Vdd ratios.
 
-### Leakege Power
+### Leakage Power
 &nbsp;&nbsp;&nbsp;&nbsp;Gate leakage is an important component in 90nm and 65nm technology, being 37.6% of the total leakage power at 65nm technology.
 Hi-k metal gate transistors (45nm High-k+Metal Gate Strain-Ehanced Transistors) are introduced at 45nm, which reduces the gate leakage by more than 90%. SOI technology and double gate (DG) devices that are used at 32nm and 22nm technology also help to keep the subthreshold leakage under control.
 
@@ -59,3 +59,20 @@ Hi-k metal gate transistors (45nm High-k+Metal Gate Strain-Ehanced Transistors) 
 ## 1.3. A system with different processors
 &nbsp;&nbsp;&nbsp;&nbsp;It may be possible for processor B with an energy consumption of 35 watts to be more energy efficient. This can be achieved by having only processor B for heavy processes and by having processor A for processor A, which will be used for a longer period of time than processor B and thus will have a higher power consumption of processor B. Such a device can be a mobile phone, a laptop or even various micro-systems that need batteries. Such systems are very common in everyday life. McPat can't give the results for two different cores of a processor - that could change if he could give us these conclusions if you count each processor differently and not as an overall processor chip.
 
+## 1.4. Xeon VS ARM A9
+
+&nbsp;&nbsp; By running the exact commands in the mcpat/mcpat folder:
+
+      ./mcpat -infile ProcessorDescriptionFiles/Xeon.xml -print_level 2
+      ./mcpat -infile ProcessorDescriptionFiles/ARM_A9_2GHz.xml -print_level 2
+
+the results can be found here [Xeon](path) and [ARM A9](path2). As shown in the table below the differences between Xeon VS ARM A9
+
+| Processor | Area | Peak Power | Total Leakage | Peak Dynamic | Subthreshold Leakage | Gate Leakage | Runtime Dynamic | Subthreshold Leakage with power gating |
+| :--------: | :--------------------: | :-------------------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
+| Xeon | 410.507 mm^2 | 134.938 W | 36.8319 W | 98.1063 W | 35.1632 W | 1.66871 W | 72.9199 W| 16.3977 W|
+| ARM A9 | 5.39698 mm^2 | 1.74189 W | 0.108687 W | 1.6332 W | 0.0523094 W | 0.0563774 W | 2.96053 W | - |
+
+<br />
+
+First of all, these two processors are of different technology. ` Xeon is 65nm ` I mean ` ARM A9 45nm ` which are very different in `short-circuit` and `leakege power`. Even the purpose of use of each processor is different for example `Xeon is designed for ITRS high performance` and `ARM A9 ITRS low operation power`. So the ARM A9 will always be better in terms of energy efficiency because it is specifically designed for that in relation to the performance offered by the Xeon will always win. That depends on the application for which each processor will be used.
