@@ -55,3 +55,7 @@ Hi-k metal gate transistors (45nm High-k+Metal Gate Strain-Ehanced Transistors) 
 
 ### Running different programs on the same processor architecture
 &nbsp;&nbsp;&nbsp;&nbsp;All the results will depend on the runtime of the program and the load it will create.But there is also the constant power consumption due to the short circuits and the leakage power of the technology used by the processor, which we consider as "constant power loss".
+
+## 1.3. A system with different processors
+&nbsp;&nbsp;&nbsp;&nbsp;It may be possible for processor B with an energy consumption of 35 watts to be more energy efficient. This can be achieved by having only processor B for heavy processes and by having processor A for processor A, which will be used for a longer period of time than processor B and thus will have a higher power consumption of processor B. Such a device can be a mobile phone, a laptop or even various micro-systems that need batteries. Such systems are very common in everyday life. McPat can't give the results for two different cores of a processor - that could change if he could give us these conclusions if you count each processor differently and not as an overall processor chip.
+
