@@ -61,7 +61,7 @@ Hi-k metal gate transistors (45nm High-k+Metal Gate Strain-Ehanced Transistors) 
 
 ## 1.4. Xeon VS ARM A9
 
-&nbsp;&nbsp; By running the exact commands in the mcpat/mcpat folder:
+&nbsp;&nbsp;&nbsp;&nbsp;By running the exact commands in the `mcpat/mcpat folder`:
 
       ./mcpat -infile ProcessorDescriptionFiles/Xeon.xml -print_level 2
       ./mcpat -infile ProcessorDescriptionFiles/ARM_A9_2GHz.xml -print_level 2
@@ -75,4 +75,4 @@ the results can be found here [Xeon](path) and [ARM A9](path2). As shown in the 
 
 <br />
 
-First of all, these two processors are of different technology. ` Xeon is 65nm ` I mean ` ARM A9 45nm ` which are very different in `short-circuit` and `leakege power`. Even the purpose of use of each processor is different for example `Xeon is designed for ITRS high performance` and `ARM A9 ITRS low operation power`. So the ARM A9 will always be better in terms of energy efficiency because it is specifically designed for that in relation to the performance offered by the Xeon will always win. That depends on the application for which each processor will be used.
+&nbsp;&nbsp;&nbsp;&nbsp;First of all, these two processors are of different technology. ` Xeon is 65nm ` I mean ` ARM A9 45nm ` which are very different in `short-circuit` and `leakege power`. Even the purpose of use of each processor is different for example `Xeon is designed for ITRS high performance` and `ARM A9 ITRS low operation power`. So the ARM A9 will always be better in terms of energy efficiency because it is specifically designed for that in relation to the performance offered by the Xeon will always win. That depends on the application for which each processor will be used.
