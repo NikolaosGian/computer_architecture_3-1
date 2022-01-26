@@ -28,10 +28,10 @@ The following table shows which processors were originally used in McPat:
 
 | Processor | Published total power and area | McPAT Results | % McPAT error |
 | :--------: | :--------------------: | :-------------------: | :-----------: |
-|  Niagara  | 63 W / 378 mm2 | 56.17 W / 295 mm2  | -10.84 / -21.8 |
-|  Niagara2   | 84 W / 342 mm2 | 69.70 W / 248 mm2 | -17.02 / -27.3 |
-| Alpha 21364  | 125 W / 396 mm2 | 97.9 W / 324 mm2 | -21.68 / -18.2 |
-| Xeon Tulsa  | 150 W / 435 mm2 | 116.08 W / 362 mm2 | -22.61 / -16.7 |
+|  Niagara  | 63 W / 378 mm^2 | 56.17 W / 295 mm^2  | -10.84 / -21.8 |
+|  Niagara2   | 84 W / 342 mm^2 | 69.70 W / 248 mm^2 | -17.02 / -27.3 |
+| Alpha 21364  | 125 W / 396 mm^2 | 97.9 W / 324 mm^2 | -21.68 / -18.2 |
+| Xeon Tulsa  | 150 W / 435 mm^2 | 116.08 W / 362 mm^2 | -22.61 / -16.7 |
 
 <br />
 <br />
@@ -80,9 +80,42 @@ the results can be found here [Xeon](https://github.com/NikolaosGian/computer_ar
 # 2.1.  How will you calculate the energy
 &nbsp;&nbsp;&nbsp;&nbsp;The `EDAP` was calculated for each benchmark and processor configuration as the product of the `total power (runtime dynamic + gate leakage + subthreshold leakage)` by the execution time of each benchmark `(sim_seconds)`.The results are presented in the table below to four decimal places. 
 
-| BenchMarks | EDAP | 
-| :--------: | :--------------------: |
-| specbzip | 0.4318 | 
-| speclibm | 0.4367 |
-| specmcf | 0.2598 |
-| specsjeng | 1.023 |
+| Cases | EDAP-specbzip | EDAP-speclibm | 
+| :--------: | :--------------------: | :--------------------: |
+| L2_size = 1MB | 0.1230 | 0.2239 |
+| L2_size = 4MB | 0.1198 | 0.2256 |
+| L2_assoc = 2-way | 0.1212 | 0.2245 |
+| L2_assoc = 4-way | 0.1209 | 0.2245 |
+| L1i_size = 64kB | 0.1525 | 0.2948 |
+| L1i_assoc = 4-way | 0.1252 | 0.2383 |
+| L1i_assoc = 8-way | 0.1289 | 0.2460 |
+| L1d_size = 32kB | 0.0688 | 0.1328 |
+| L1d_size = 128kB | 0.1478 | 0.2835 |
+| L1d_assoc = 4-way | 0.0950 | 0.1768 |
+| L1d_assoc = 8-way | 0.1031 | 0.1891 |
+| cacheline_size = 32B | 0.0860 | 0.2439 |
+| cacheline_size = 128B | 0.1504 | 0.2060 |
+| cacheline_size = 256B | 0.2995 | 0.3285 |
+| cacheline_size = 256k | 0.1724 | 0.3297 |
+
+<br />
+
+# 2.2. Graphs
+&nbsp;&nbsp;&nbsp;&nbsp;The peak power for each case is shown in the following graphs, divided by benchmark. The red line shows the power recorded for the MinorCPU case without any change in its characteristics. <br />
+
+<img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/specbzip_graph.PNG"> 
+<br />
+
+<img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/speclibm_graph.PNG"> <br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;So we see that peak power is only affected by the different choices in cache size, associativity etc. for each processor, and does not vary depending on the computational load of each benchmark. The graphs show that the largest influence on the final peak power is the `cache line size`, with `27.4066 W` for the largest `256 byte` option and `2.3259 W` for the smallest `32 byte` option.
+
+<br />
+
+
+# 2.3.  Your results obtained in relation to the cost function.
+&nbsp;&nbsp;&nbsp;&nbsp;McPAT does not do a full transistor-level simulation of the processor circuits as a mixed-signal simulator would do.Another possible source of errors is gem5, as it defaults to only syscall emulation, ignoring any hardware delays and therefore may have run-time errors. In fact, the TimingSimpleCPU model can reduce errors to some extent, as it takes hardware timing into account. The combination of the two programs multiplies the errors in the generated values if no correction is made before the final calculation.
+
+# 3. Source
+[Paper McPAT](https://www.hpl.hp.com/research/mcpat/micro09.pdf) <br />
+[Github From Andreas Brokalakis](https://github.com/kingmouf/cmcpat) <br />
