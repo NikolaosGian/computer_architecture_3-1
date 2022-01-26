@@ -16,7 +16,7 @@
 <br />
 
 - [1. Step 1](#1-step-1)
-  - [1.1. Original Paper McPat and which processors were used.](#11-original-papermcpat-and-which-processors-were-used)
+  - [1.1. Original Paper McPat and which processors were used.](#11-original-paper-mcpat-and-which-processors-were-used)
   - [1.2. Looking at the results that the McPAT output gives you.](#12-looking-at-the-results-that-the-mcpat-output-gives-you)
   - [1.3. A system with different processors.](#13-a-system-with-different-processors)
   - [1.4. Xeon VS ARM A9.](#14-xeon-vs-arm-a9)
@@ -89,7 +89,7 @@ the results can be found here [Xeon](https://github.com/NikolaosGian/computer_ar
 &nbsp;&nbsp;&nbsp;&nbsp;First of all, these two processors are of different technology. ` Xeon is 65nm ` I mean ` ARM A9 45nm ` which are very different in `short-circuit` and `leakege power`. Even the purpose of use of each processor is different for example `Xeon is designed for ITRS high performance` and `ARM A9 ITRS low operation power`. So the ARM A9 will always be better in terms of energy efficiency because it is specifically designed for that in relation to the performance offered by the Xeon will always win. That depends on the application for which each processor will be used.
 <br/>
 # 2. Step 2.
-## 2.1.  How will you calculate the energy.
+## 2.1. How will you calculate the energy.
 &nbsp;&nbsp;&nbsp;&nbsp;The `EDAP` was calculated for each benchmark and processor configuration as the product of the `total power (runtime dynamic + gate leakage + subthreshold leakage)` by the execution time of each benchmark `(sim_seconds)`.The results are presented in the table below to four decimal places. 
 
 | Cases | EDAP-specbzip | EDAP-speclibm | 
