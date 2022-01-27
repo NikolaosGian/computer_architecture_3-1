@@ -15,9 +15,20 @@
 </div>
 <br />
 
+- [1. Step 1](#1-step-1)
+  - [1.1. Original Paper McPat and which processors were used.](#11-original-paper-mcpat-and-which-processors-were-used)
+  - [1.2. Looking at the results that the McPAT output gives you.](#12-looking-at-the-results-that-the-mcpat-output-gives-you)
+  - [1.3. A system with different processors.](#13-a-system-with-different-processors)
+  - [1.4. Xeon VS ARM A9.](#14-xeon-vs-arm-a9)
+- [2. Step 2.](#2-step-2)
+  - [2.1. How will you calculate the energy.](#21-how-will-you-calculate-the-energy)
+  - [2.2. Graphs.](#22-graphs)
+  - [2.3 Your results obtained in relation to the cost function.](#23-your-results-obtained-in-relation-to-the-cost-function)
+ - [3. Source.](#3-source)
+
 
 # 1. Step 1
-## 1.1. Original Paper McPat and which processors were used
+## 1.1. Original Paper McPat and which processors were used.
 <br />
 In the document presented McPAT is an integrated power system, area, and timing modeling framework that supports integrated design space exploration for multicore and processor configurations ranging from 90nm to 22nm and beyond. At the microarchitecture level, McPAT includes Models for the fundamental elements of a multiprocessor chip, including on- and off-series processor cores,
 on-chip networks, shared caches, embedded memory controllers and multi-region timing. In the circuit and in the technology level, McPAT supports critical path timing modeling, surface modeling, and dynamic power, short circuit, and leakage power modeling for each of the device types provided in the ITRS roadmap, including bulk CMOS, SOI and dual-gate transistors. McPAT has a flexible XML interface for to facilitate its use with multiple performance simulators. <br />
@@ -32,15 +43,16 @@ The following table shows which processors were originally used in McPat:
 
 | Processor | Published total power and area | McPAT Results | % McPAT error |
 | :--------: | :--------------------: | :-------------------: | :-----------: |
-|  Niagara  | 63 W / 378 mm2 | 56.17 W / 295 mm2  | -10.84 / -21.8 |
-|  Niagara2   | 84 W / 342 mm2 | 69.70 W / 248 mm2 | -17.02 / -27.3 |
-| Alpha 21364  | 125 W / 396 mm2 | 97.9 W / 324 mm2 | -21.68 / -18.2 |
-| Xeon Tulsa  | 150 W / 435 mm2 | 116.08 W / 362 mm2 | -22.61 / -16.7 |
+|  Niagara  | 63 W / 378 mm^2 | 56.17 W / 295 mm^2  | -10.84 / -21.8 |
+|  Niagara2   | 84 W / 342 mm^2 | 69.70 W / 248 mm^2 | -17.02 / -27.3 |
+| Alpha 21364  | 125 W / 396 mm^2 | 97.9 W / 324 mm^2 | -21.68 / -18.2 |
+| Xeon Tulsa  | 150 W / 435 mm^2 | 116.08 W / 362 mm^2 | -22.61 / -16.7 |
 
 <br />
 <br />
 
-## 1.2. Looking at the results that the McPAT output gives you
+## 1.2. Looking at the results that the McPAT output gives you.
+
 
 ### Dynamic Power
 Wattch (Wattch: a framework for architectural-level power analysis and optimizations) is a widely-used processor power estimation tool. Wattch calculates dynamic power dissipation from switching events obtained from an architectural simulation and capacitance models of components of the microarchitecture. For array structures, Wattch uses capacitance models from CACTI, and for the pipeline it uses models from "Complexity-Effective Superscalar Processors".
@@ -64,9 +76,7 @@ All the results will depend on the runtime of the program and the load it will c
 
 The answer can be given by looking the performance per watt for each processor. The second processor requires 35/25 = 1.4 times more energy. If that processor could perform more that 1.4 operations per second that the firts processor then it would make more sence to use the proessor that uses more power since it would consume less energy performing the same operations by finishing 1.4 or more times faster. For McPAT to give an answer to this question information about the performnace of each processor would need to be provided. Finaly another consideration would be the battery capacity for different output power levels. Batteries tend to be less efficient the more power they need to provide. So with that in mind a 25W processor could be preferable even if it was 1.4 times slower that a 35W one.
 
-> It may be possible for processor B with an energy consumption of 35 watts to be more energy efficient. This can be achieved by having only processor B for heavy processes and by having processor A for processor A, which will be used for a longer period of time than processor B and thus will have a higher power consumption of processor B. Such a device can be a mobile phone, a laptop or even various micro-systems that need batteries. Such systems are very common in everyday life. McPat can't give the results for two different cores of a processor - that could change if he could give us these conclusions if you count each processor differently and not as an overall processor chip.
-
-## 1.4. Xeon VS ARM A9
+## 1.4. Xeon VS ARM A9.
 
 By running the exact commands in the `mcpat/mcpat folder`:
 
@@ -83,3 +93,48 @@ the results can be found here [Xeon](https://github.com/NikolaosGian/computer_ar
 <br />
 
 The metric that can be used to compare the two completely different processors is performance per watt and more specific FLOPS per Watt. This metric shows how many floating point operations per Watt can the processor perform. The FLOPS of the two processors are unknown but not really required since we need to compare the two. It is given that Xeon is 40 times faster that the ARM A9 which means that the Xeon performs in general 40 times more FLOPS that the ARM A9. Using the mcPAT it was found that the peak power for the Xeon was 134.9W and for the ARM A9 was 1.74W. Dividing the two (134.9/1.74) gives 77.53. What this result shows is that if the Xeon was 77.53 times faster that the A9 then the two processors would be equaly efficient energy wise. Since Xeon is only 40 times faster it can never reach the efficiency of the A9.
+<br/>
+# 2. Step 2.
+## 2.1. How will you calculate the energy.
+The `EDAP` was calculated for each benchmark and processor configuration as the product of the `total power (runtime dynamic + gate leakage + subthreshold leakage)` by the execution time of each benchmark `(sim_seconds)`.The results are presented in the table below to four decimal places. 
+
+| Cases | EDAP-specbzip | EDAP-speclibm | 
+| :--------: | :--------------------: | :--------------------: |
+| L2_size = 1MB | 0.1230 | 0.2239 |
+| L2_size = 4MB | 0.1198 | 0.2256 |
+| L2_assoc = 2-way | 0.1212 | 0.2245 |
+| L2_assoc = 4-way | 0.1209 | 0.2245 |
+| L1i_size = 64kB | 0.1525 | 0.2948 |
+| L1i_assoc = 4-way | 0.1252 | 0.2383 |
+| L1i_assoc = 8-way | 0.1289 | 0.2460 |
+| L1d_size = 32kB | 0.0688 | 0.1328 |
+| L1d_size = 128kB | 0.1478 | 0.2835 |
+| L1d_assoc = 4-way | 0.0950 | 0.1768 |
+| L1d_assoc = 8-way | 0.1031 | 0.1891 |
+| cacheline_size = 32B | 0.0860 | 0.2439 |
+| cacheline_size = 128B | 0.1504 | 0.2060 |
+| cacheline_size = 256B | 0.2995 | 0.3285 |
+| cacheline_size = 256k | 0.1724 | 0.3297 |
+
+<br />
+
+## 2.2. Graphs.
+The peak power for each case is shown in the following graphs, divided by benchmark. The red line shows the power recorded for the MinorCPU case without any change in its characteristics. <br />
+
+<img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/specbzip_graph.PNG"> 
+<br />
+
+<img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/speclibm_graph.PNG"> <br />
+
+So we see that peak power is only affected by the different choices in cache size, associativity etc. for each processor, and does not vary depending on the computational load of each benchmark. The graphs show that the largest influence on the final peak power is the `cache line size`, with `27.4066 W` for the largest `256 byte` option and `2.3259 W` for the smallest `32 byte` option.
+
+<br />
+
+
+## 2.3. Your results obtained in relation to the cost function.
+McPAT does not do a full transistor-level simulation of the processor circuits as a mixed-signal simulator would do.Another possible source of errors is gem5, as it defaults to only syscall emulation, ignoring any hardware delays and therefore may have run-time errors. In fact, the TimingSimpleCPU model can reduce errors to some extent, as it takes hardware timing into account. The combination of the two programs multiplies the errors in the generated values if no correction is made before the final calculation.
+
+# 3. Source.
+[Paper McPAT](https://www.hpl.hp.com/research/mcpat/micro09.pdf) <br />
+[Github From Andreas Brokalakis](https://github.com/kingmouf/cmcpat) <br />
+
