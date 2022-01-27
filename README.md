@@ -119,7 +119,7 @@ The `EDAP` was calculated for each benchmark and processor configuration as the 
 <br />
 
 ## 2.2. Graphs.
-The peak power for each case is shown in the following graphs, divided by benchmark. The red line shows the power recorded for the MinorCPU case without any change in its characteristics. <br />
+The peak power for each case is shown in the following graphs, divided by benchmark. The orange line shows the power recorded for the MinorCPU case without any change in its characteristics. <br />
 
 <img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/specbzip_graph.PNG"> 
 <br />
