@@ -121,10 +121,10 @@ The `EDAP` was calculated for each benchmark and processor configuration as the 
 ## 2.2. Graphs.
 The peak power for each case is shown in the following graphs, divided by benchmark. The orange line shows the power recorded for the MinorCPU case without any change in its characteristics. <br />
 
-<img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/specbzip_graph.PNG"> 
+<img src="https://github.com/NikolaosGian/computer_architecture_3-1/blob/main/graphs/specbzip_graph.PNG"> 
 <br />
 
-<img src="https://github.com/NikolaosGian/computer_architecture_3/blob/main/graphs/speclibm_graph.PNG"> <br />
+<img src="https://github.com/NikolaosGian/computer_architecture_3-1/blob/main/graphs/speclibm_graph.PNG"> <br />
 
 So we see that peak power is only affected by the different choices in cache size, associativity etc. for each processor, and does not vary depending on the computational load of each benchmark. The graphs show that the largest influence on the final peak power is the `cache line size`, with `27.4066 W` for the largest `256 byte` option and `2.3259 W` for the smallest `32 byte` option.
 
